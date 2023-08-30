@@ -37,7 +37,9 @@ class PluginController {
             "negotiateMtuSize" to this::negotiateMtuSize,
             "requestConnectionPriority" to this::requestConnectionPriority,
             "discoverServices" to this::discoverServices,
-            "getDiscoveredServices" to this::discoverServices
+            "getDiscoveredServices" to this::discoverServices,
+            "getConnectedPeripherals" to this::getConnectedPeripherals,
+            "getBondedDevices" to this::getBondedDevices,
     )
 
     private lateinit var bleClient: com.signify.hue.flutterreactiveble.ble.BleClient
@@ -272,5 +274,15 @@ class PluginController {
                     throwable -> result.error("service_discovery_failure", throwable.toString(), throwable.stackTrace.toList().toString())
                 })
                 .discard()
+    }
+
+    private fun getBondedDevices(call: MethodCall, result: Result) {
+        // TODO(mozerrr): проверить
+        result.success(bleClient.getBondedDevices())
+    }
+
+    private fun getConnectedPeripherals(call: MethodCall, result: Result) {
+        // TODO(mozerrr): проверить
+        result.success(bleClient.getConnectedPeripherals())
     }
 }

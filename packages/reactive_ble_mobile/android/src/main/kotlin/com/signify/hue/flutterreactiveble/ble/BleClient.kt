@@ -1,6 +1,7 @@
 package com.signify.hue.flutterreactiveble.ble
 
 import android.os.ParcelUuid
+import com.polidea.rxandroidble2.RxBleDevice
 import com.polidea.rxandroidble2.RxBleDeviceServices
 import com.signify.hue.flutterreactiveble.model.ScanMode
 import com.signify.hue.flutterreactiveble.utils.Duration
@@ -48,4 +49,6 @@ interface BleClient {
     fun observeBleStatus(): Observable<BleStatus>
     fun requestConnectionPriority(deviceId: String, priority: ConnectionPriority):
             Single<RequestConnectionPriorityResult>
+    fun getBondedDevices(): Set<RxBleDevice>
+    fun getConnectedPeripherals(): Set<RxBleDevice>
 }

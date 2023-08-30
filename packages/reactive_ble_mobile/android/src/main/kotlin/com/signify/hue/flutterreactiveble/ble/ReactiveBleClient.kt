@@ -353,6 +353,14 @@ open class ReactiveBleClient(private val context: Context) : BleClient {
             }
         }.first(RequestConnectionPriorityFailed(deviceId, "Unknown failure"))
 
+    override fun getBondedDevices(): Set<RxBleDevice> {
+        return rxBleClient.bondedDevices
+    }
+
+    override fun getConnectedPeripherals(): Set<RxBleDevice> {
+        return rxBleClient.connectedPeripherals
+    }
+
     // enable this for extra debug output on the android stack
     private fun enableDebugLogging() = RxBleClient
         .updateLogOptions(
