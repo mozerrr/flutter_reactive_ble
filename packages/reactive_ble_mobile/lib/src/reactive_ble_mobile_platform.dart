@@ -309,24 +309,32 @@ class ReactiveBleMobilePlatform extends ReactiveBlePlatform {
   Future<Set<BleDevice>> getBondedDevices() async {
     _logger?.log('Get bonded devices');
     if (Platform.isIOS) throw UnimplementedError();
-    return _bleMethodChannel
-        .invokeMethod<List<String>>(
+    final data = await _bleMethodChannel.invokeMethod<List<Object?>>(
           'getBondedDevices',
-        )
-        .then((data) =>
-            data!.map((e) => BleDevice(name: '', deviceId: e)).toSet());
+        ) ??
+        [];
+    if (data.isEmpty) {
+      return {};
+    }
+    data.removeWhere((element) => element == null);
+    // FIXME(mozerrr): вернуть функциональность
+    return data.map((e) => BleDevice(name: '', deviceId: e.toString())).toSet();
   }
 
   @override
   Future<Set<BleDevice>> getConnectedPeripherals() async {
     _logger?.log('Get connected devices');
     if (Platform.isIOS) throw UnimplementedError();
-    return _bleMethodChannel
-        .invokeMethod<List<String>>(
+    final data = await _bleMethodChannel.invokeMethod<List<Object?>>(
           'getConnectedPeripherals',
-        )
-        .then((data) =>
-            data!.map((e) => BleDevice(name: '', deviceId: e)).toSet());
+        ) ??
+        [];
+    if (data.isEmpty) {
+      return {};
+    }
+    data.removeWhere((element) => element == null);
+    // FIXME(mozerrr): вернуть функциональность
+    return data.map((e) => BleDevice(name: '', deviceId: e.toString())).toSet();
   }
 }
 
