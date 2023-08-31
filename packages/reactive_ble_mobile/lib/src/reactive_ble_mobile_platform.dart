@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/services.dart';
 import 'package:reactive_ble_platform_interface/reactive_ble_platform_interface.dart';
 
@@ -301,6 +303,30 @@ class ReactiveBleMobilePlatform extends ReactiveBlePlatform {
               .writeToBuffer(),
         )
         .then((data) => _protobufConverter.discoveredServicesFrom(data!));
+  }
+
+  @override
+  Future<Set<BleDevice>> getBondedDevices() async {
+    _logger?.log('Get bonded devices');
+    if (Platform.isIOS) throw UnimplementedError();
+    return _bleMethodChannel
+        .invokeMethod<List<String>>(
+          'getBondedDevices',
+        )
+        .then((data) =>
+            data!.map((e) => BleDevice(name: '', deviceId: e)).toSet());
+  }
+
+  @override
+  Future<Set<BleDevice>> getConnectedPeripherals() async {
+    _logger?.log('Get connected devices');
+    if (Platform.isIOS) throw UnimplementedError();
+    return _bleMethodChannel
+        .invokeMethod<List<String>>(
+          'getConnectedPeripherals',
+        )
+        .then((data) =>
+            data!.map((e) => BleDevice(name: '', deviceId: e)).toSet());
   }
 }
 

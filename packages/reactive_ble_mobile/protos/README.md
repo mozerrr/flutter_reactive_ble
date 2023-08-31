@@ -25,6 +25,8 @@ brew install dart
 ```sh
 protoc --dart_out=../lib/src/generated ./bledata.proto
 protoc --swift_out=../ios/Classes/BleData ./bledata.proto
+#protoc --proto_path=src --kotlin_out=../android/src/main/kotlin/com/signify/hue/flutterreactiveble/ble/generated ./bledata.proto
+# --java_out=build/gen/java --kotlin_out=build/gen/kotlin src/foo.proto
 ```
 
 NOTE: If directory `../lib/generated` or `./ios/Classes/BleData` does not exist please create it.

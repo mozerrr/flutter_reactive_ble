@@ -185,4 +185,32 @@ abstract class ReactiveBlePlatform extends PlatformInterface {
     throw UnimplementedError(
         'requestConnectionPriority has not been implemented.');
   }
+
+  /// A function returning a set of currently bonded devices.
+  /// If Bluetooth state is not STATE_ON, this API will return an empty set.
+  /// After turning on Bluetooth, wait for ACTION_STATE_CHANGED with STATE_ON
+  /// to get the updated value. Calling this function on or
+  /// above Android 12 (API >= 31) requires BLUETOOTH_CONNECT runtime permission.
+  ///
+  /// Returns set of currently bonded devices.
+  ///
+  /// This operation is specific to the Android ecosystem and should not be
+  /// implemented by other platforms.
+  Future<Set<BleDevice>> getBondedDevices() {
+    throw UnimplementedError(
+        'getBondedDevices has not been implemented.');
+  }
+
+  /// A function returning a set of currently
+  /// connected devices.
+  /// (NOTE: Connected to the phone, not necessarily application).
+  ///
+  /// Returns set of currently connected devices.
+  ///
+  /// This operation is specific to the Android ecosystem and should not be
+  /// implemented by other platforms.
+  Future<Set<BleDevice>> getConnectedPeripherals() {
+    throw UnimplementedError(
+        'getConnectedPeripherals has not been implemented.');
+  }
 }

@@ -1,3 +1,4 @@
+export './model/ble_device.dart';
 export './model/ble_status.dart';
 export './model/characteristic_instance.dart';
 export './model/characteristic_value.dart';

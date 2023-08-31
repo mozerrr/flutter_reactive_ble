@@ -25,6 +25,10 @@ abstract class ProtobufConverter {
       pb.NegotiateMtuInfo.fromBuffer(data).mtuSize;
 
   List<DiscoveredService> discoveredServicesFrom(List<int> data);
+
+  Set<BleDevice> bondedDevicesFrom(List<int> data);
+
+  Set<BleDevice> connectedPeripheralsFrom(List<int> data);
 }
 
 class ProtobufConverterImpl implements ProtobufConverter {
@@ -241,6 +245,18 @@ class ProtobufConverterImpl implements ProtobufConverter {
     }
 
     return Connectable.unknown;
+  }
+
+  @override
+  Set<BleDevice> bondedDevicesFrom(List<int> data) {
+    // TODO: implement bondedDevicesFrom
+    throw UnimplementedError();
+  }
+
+  @override
+  Set<BleDevice> connectedPeripheralsFrom(List<int> data) {
+    // TODO: implement connectedPeripheralsFrom
+    throw UnimplementedError();
   }
 }
 

@@ -19,6 +19,15 @@ message DeviceScanInfo {
     IsConnectable isConnectable = 8;
 }
 
+message BleDevice {
+    string name = 1;
+    string deviceId = 2;
+}
+
+message BleDevicesInfo {
+    repeated BleDevice devices = 1;
+}
+
 message ConnectToDeviceRequest {
     string deviceId = 1;
     ServicesWithCharacteristics servicesWithCharacteristicsToDiscover = 2;

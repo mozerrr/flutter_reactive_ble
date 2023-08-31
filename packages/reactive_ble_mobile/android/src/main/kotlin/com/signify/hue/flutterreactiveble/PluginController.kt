@@ -278,11 +278,11 @@ class PluginController {
 
     private fun getBondedDevices(call: MethodCall, result: Result) {
         // TODO(mozerrr): проверить
-        result.success(bleClient.getBondedDevices())
+        result.success(bleClient.getBondedDevices().map { e -> e.macAddress })
     }
 
     private fun getConnectedPeripherals(call: MethodCall, result: Result) {
         // TODO(mozerrr): проверить
-        result.success(bleClient.getConnectedPeripherals())
+        result.success(bleClient.getConnectedPeripherals().map { e -> e.macAddress })
     }
 }
