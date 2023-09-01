@@ -277,12 +277,12 @@ class PluginController {
     }
 
     private fun getBondedDevices(call: MethodCall, result: Result) {
-        // TODO(mozerrr): проверить
-        result.success(bleClient.getBondedDevices().map { e -> e.macAddress })
+        // Erwin503;12:ac:32:ff
+        result.success(bleClient.getBondedDevices().map { e -> "${if (e.name != null) e.name else ""};${e.macAddress}" })
     }
 
     private fun getConnectedPeripherals(call: MethodCall, result: Result) {
-        // TODO(mozerrr): проверить
-        result.success(bleClient.getConnectedPeripherals().map { e -> e.macAddress })
+        // Erwin503;12:ac:32:ff
+        result.success(bleClient.getConnectedPeripherals().map { e -> "${if (e.name != null) e.name else ""};${e.macAddress}" })
     }
 }
