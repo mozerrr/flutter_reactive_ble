@@ -317,13 +317,17 @@ class ReactiveBleMobilePlatform extends ReactiveBlePlatform {
       return {};
     }
     data.removeWhere((element) => element == null);
-    // FIXME(mozerrr): вернуть функциональность
-    return data.map((e) => BleDevice(name: '', deviceId: e.toString())).toSet();
+    return data.cast<String>().map((e) {
+      final info = e.split(';');
+      final name = info[0];
+      final deviceId = info[1];
+      return BleDevice(name: name, deviceId: deviceId);
+    }).toSet();
   }
 
   @override
   Future<Set<BleDevice>> getConnectedPeripherals() async {
-    _logger?.log('Get connected devices');
+    _logger?.log('Get connected peripherals');
     if (Platform.isIOS) throw UnimplementedError();
     final data = await _bleMethodChannel.invokeMethod<List<Object?>>(
           'getConnectedPeripherals',
@@ -333,8 +337,12 @@ class ReactiveBleMobilePlatform extends ReactiveBlePlatform {
       return {};
     }
     data.removeWhere((element) => element == null);
-    // FIXME(mozerrr): вернуть функциональность
-    return data.map((e) => BleDevice(name: '', deviceId: e.toString())).toSet();
+    return data.cast<String>().map((e) {
+      final info = e.split(';');
+      final name = info[0];
+      final deviceId = info[1];
+      return BleDevice(name: name, deviceId: deviceId);
+    }).toSet();
   }
 }
 
