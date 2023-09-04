@@ -311,7 +311,7 @@ class ReactiveBleMobilePlatform extends ReactiveBlePlatform {
     if (Platform.isIOS) throw UnimplementedError();
     final data = await _bleMethodChannel.invokeMethod<List<Object?>>(
           'getBondedDevices',
-        ) ??
+        ).toList() ??
         [];
     if (data.isEmpty) {
       return {};
@@ -331,7 +331,7 @@ class ReactiveBleMobilePlatform extends ReactiveBlePlatform {
     if (Platform.isIOS) throw UnimplementedError();
     final data = await _bleMethodChannel.invokeMethod<List<Object?>>(
           'getConnectedPeripherals',
-        ) ??
+        ).toList() ??
         [];
     if (data.isEmpty) {
       return {};
