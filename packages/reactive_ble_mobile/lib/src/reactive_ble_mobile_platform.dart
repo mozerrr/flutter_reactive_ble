@@ -309,9 +309,9 @@ class ReactiveBleMobilePlatform extends ReactiveBlePlatform {
   Future<Set<BleDevice>> getBondedDevices() async {
     _logger?.log('Get bonded devices');
     if (Platform.isIOS) throw UnimplementedError();
-    final data = await _bleMethodChannel.invokeMethod<List<Object?>>(
+    final data = (await _bleMethodChannel.invokeMethod<List<Object?>>(
           'getBondedDevices',
-        ).toList() ??
+        ))?.toList() ??
         [];
     if (data.isEmpty) {
       return {};
@@ -329,9 +329,9 @@ class ReactiveBleMobilePlatform extends ReactiveBlePlatform {
   Future<Set<BleDevice>> getConnectedPeripherals() async {
     _logger?.log('Get connected peripherals');
     if (Platform.isIOS) throw UnimplementedError();
-    final data = await _bleMethodChannel.invokeMethod<List<Object?>>(
+    final data = (await _bleMethodChannel.invokeMethod<List<Object?>>(
           'getConnectedPeripherals',
-        ).toList() ??
+        ))?.toList() ??
         [];
     if (data.isEmpty) {
       return {};
